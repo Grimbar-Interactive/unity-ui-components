@@ -2,9 +2,12 @@ using System;
 using System.Collections;
 using GI.UnityToolkit.Utilities;
 using GI.UnityToolkit.Variables;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#endif
 
 namespace GI.UnityToolkit.Components
 {
