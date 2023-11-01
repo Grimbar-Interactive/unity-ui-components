@@ -13,6 +13,7 @@ namespace GI.UnityToolkit.Components.UI
         private void OnEnable()
         {
             boolVariable.AddListener(OnValueChanged);
+            OnValueChanged();
         }
 
         private void OnDisable()
