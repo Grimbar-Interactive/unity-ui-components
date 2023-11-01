@@ -1,34 +1,25 @@
 using GI.UnityToolkit.Variables;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace GI.UnityToolkit.Components.UI
 {
     /// <summary>
     /// Handles syncing a bool variable with a Toggle component (Unity UI).
     /// </summary>
-    [RequireComponent(typeof(Toggle))]
-    public class BoolVariableToggle : MonoBehaviour
+    public class BoolVariableToggle : ToggleComponent
     {
         [SerializeField] private BoolVariable boolVariable;
 
-        private Toggle _toggle;
-        
-        private void Awake()
-        {
-            _toggle = GetComponent<Toggle>();
-        }
-
         private void OnEnable()
         {
-            _toggle.isOn = boolVariable.Value;
-            _toggle.onValueChanged.AddListener(OnToggleValueChanged);
+            Toggle.isOn = boolVariable.Value;
+            Toggle.onValueChanged.AddListener(OnToggleValueChanged);
             boolVariable.AddListener(OnBoolVariableChanged);
         }
 
         private void OnDisable()
         {
-            _toggle.onValueChanged.RemoveListener(OnToggleValueChanged);
+            Toggle.onValueChanged.RemoveListener(OnToggleValueChanged);
             boolVariable.RemoveListener(OnBoolVariableChanged);
         }
 
@@ -40,8 +31,8 @@ namespace GI.UnityToolkit.Components.UI
 
         private void OnBoolVariableChanged()
         {
-            if (_toggle.isOn == boolVariable.Value) return;
-            _toggle.isOn = boolVariable.Value;
+            if (Toggle.isOn == boolVariable.Value) return;
+            Toggle.isOn = boolVariable.Value;
         }
     }
 }

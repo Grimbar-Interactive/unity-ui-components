@@ -12,7 +12,7 @@ namespace GI.UnityToolkit.Components.UI
     /// Enables and disables an attached Canvas based on the state.
     /// </summary>
     [AddComponentMenu("Grimbar Interactive/UI/State Canvas")]
-    public class StateCanvas : CanvasComponent, IStateListener<State.State>
+    public class StateEnabledCanvas : CanvasComponent, IStateListener<State.State>
     {
         [SerializeField] private StateManager stateManager;
         
