@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GI.UnityToolkit.Components.UI
 {
-    public class FloatText : TextComponent
+    public class FloatVariableText : TextComponent
     {
         [SerializeField] private FloatVariable floatVariable;
         [SerializeField] private bool isTimeSpan = false;

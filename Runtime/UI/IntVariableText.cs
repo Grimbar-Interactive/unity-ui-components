@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GI.UnityToolkit.Components.UI
 {
-    public class IntText : TextComponent
+    public class IntVariableText : TextComponent
     {
         [SerializeField] private IntVariable intVariable;
         [SerializeField] private bool isTimeSpan = false;
