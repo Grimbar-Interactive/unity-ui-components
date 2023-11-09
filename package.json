@@ -1,7 +1,7 @@
 {
   "name": "com.grimbar-interactive.unity-components",
   "displayName": "Unity Components",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "unity": "2021.3",
   "description": "Useful MonoBehaviour components for Unity.",
   "keywords": [ "ui", "components", "game", "games", "unity" ],
