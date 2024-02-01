@@ -1,8 +1,10 @@
+#if !UNITY_2019
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using GI.UnityToolkit.State;
 using UnityEngine;
+#endif
 
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
@@ -12,6 +14,7 @@ using NaughtyAttributes;
 
 namespace GI.UnityToolkit.Components.UI
 {
+#if !UNITY_2019
     public class MultiStateEnabledCanvasGeneric<TState> : CanvasComponent, IMultiStateListener<TState> where TState : StateBase
     {
         [SerializeField] private MultiStateManagerBase<TState> multiStateManager;
@@ -47,15 +50,23 @@ namespace GI.UnityToolkit.Components.UI
 
         public void OnStateChanged(MultiStateValue<TState> previousActiveStates, MultiStateValue<TState> newActiveStates)
         {
-            Canvas.enabled = enableWhen switch
+            switch (enableWhen)
             {
-                StateComparison.AnyAreActive => activeStates.Any(newActiveStates.IsActive),
-                StateComparison.AllAreActive => activeStates.All(newActiveStates.IsActive),
-                StateComparison.NoneAreActive => !activeStates.Any(newActiveStates.IsActive),
-                _ => throw new ArgumentOutOfRangeException()
-            };
+                case StateComparison.AnyAreActive:
+                    Canvas.enabled = activeStates.Any(newActiveStates.IsActive);
+                    break;
+                case StateComparison.AllAreActive:
+                    Canvas.enabled = activeStates.All(newActiveStates.IsActive);
+                    break;
+                case StateComparison.NoneAreActive:
+                    Canvas.enabled = !activeStates.Any(newActiveStates.IsActive);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
         
         private bool StateManagerIsSet => multiStateManager != null;
     }
+#endif
 }
