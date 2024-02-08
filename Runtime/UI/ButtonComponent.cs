@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace GI.UnityToolkit.Components.UI
 {
     [RequireComponent(typeof(Button))]
-    public class ButtonComponent : MonoBehaviour
+    public abstract class ButtonComponent : MonoBehaviour
     {
         protected Button Button { get; private set; }
 
@@ -12,5 +12,17 @@ namespace GI.UnityToolkit.Components.UI
         {
             Button = GetComponent<Button>();
         }
+
+        protected void OnEnable()
+        {
+            Button.onClick.AddListener(OnClicked);
+        }
+
+        protected void OnDisable()
+        {
+            Button.onClick.RemoveListener(OnClicked);
+        }
+
+        protected abstract void OnClicked();
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace GI.UnityToolkit.Components.UI
 {
     [RequireComponent(typeof(TMP_Text))]
-    public class TextComponent : MonoBehaviour
+    public abstract class TextComponent : MonoBehaviour
     {
         protected TMP_Text Text { get; private set; }
 

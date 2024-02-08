@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace GI.UnityToolkit.Components.UI
 {
     [RequireComponent(typeof(Image))]
-    public class ImageComponent : MonoBehaviour
+    public abstract class ImageComponent : MonoBehaviour
     {
         protected Image Image { get; private set; }
 
