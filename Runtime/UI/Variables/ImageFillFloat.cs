@@ -3,7 +3,7 @@ using GI.UnityToolkit.Variables;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GI.UnityToolkit.Components.UI
+namespace GI.UnityToolkit.Components.UI.Variables
 {
     [RequireComponent(typeof(Image))]
     public class ImageFill : ImageComponent

@@ -9,7 +9,7 @@ using Sirenix.OdinInspector;
 using NaughtyAttributes;
 #endif
 
-namespace GI.UnityToolkit.Components.UI
+namespace GI.UnityToolkit.Components.UI.Variables
 {
     /// <summary>
     /// Enables and disables a canvas based on the value of a BoolVariable.

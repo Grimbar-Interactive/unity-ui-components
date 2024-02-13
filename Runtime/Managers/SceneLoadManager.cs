@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 using Sirenix.OdinInspector;
 #endif
 
-namespace GI.UnityToolkit.Components
+namespace GI.UnityToolkit.Components.Managers
 {
     public class SceneLoadManager : Singleton<SceneLoadManager>
     {

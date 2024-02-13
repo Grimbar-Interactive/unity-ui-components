@@ -1,7 +1,7 @@
 using GI.UnityToolkit.Variables;
 using UnityEngine;
 
-namespace GI.UnityToolkit.Components.UI
+namespace GI.UnityToolkit.Components.UI.Variables
 {
     /// <summary>
     /// Handles syncing a bool variable with a Toggle component (Unity UI).

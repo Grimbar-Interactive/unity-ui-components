@@ -3,7 +3,7 @@ using System.Globalization;
 using GI.UnityToolkit.Variables;
 using UnityEngine;
 
-namespace GI.UnityToolkit.Components.UI
+namespace GI.UnityToolkit.Components.UI.Variables
 {
     public class FloatVariableText : TextComponent
     {

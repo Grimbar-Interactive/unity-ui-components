@@ -2,7 +2,7 @@ using System;
 using GI.UnityToolkit.Variables;
 using UnityEngine;
 
-namespace GI.UnityToolkit.Components.UI
+namespace GI.UnityToolkit.Components.UI.Variables
 {
     public class StringVariableText : TextComponent
     {
