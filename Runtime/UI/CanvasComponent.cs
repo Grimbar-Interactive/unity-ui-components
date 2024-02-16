@@ -7,7 +7,7 @@ namespace GI.UnityToolkit.Components.UI
     {
         protected Canvas Canvas { get; private set; }
         
-        private void Awake()
+        protected void Awake()
         {
             Canvas = GetComponent<Canvas>();
         }
