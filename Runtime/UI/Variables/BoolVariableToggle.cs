@@ -10,20 +10,20 @@ namespace GI.UnityToolkit.Components.UI.Variables
     {
         [SerializeField] private BoolVariable boolVariable;
 
-        private void OnEnable()
+        private new void OnEnable()
         {
+            base.OnEnable();
             Toggle.isOn = boolVariable.Value;
-            Toggle.onValueChanged.AddListener(OnToggleValueChanged);
             boolVariable.AddListener(OnBoolVariableChanged);
         }
 
-        private void OnDisable()
+        private new void OnDisable()
         {
-            Toggle.onValueChanged.RemoveListener(OnToggleValueChanged);
+            base.OnDisable();
             boolVariable.RemoveListener(OnBoolVariableChanged);
         }
 
-        private void OnToggleValueChanged(bool value)
+        protected override void OnValueChanged(bool value)
         {
             if (boolVariable.Value == value) return;
             boolVariable.SetValue(value);

@@ -8,9 +8,21 @@ namespace GI.UnityToolkit.Components.UI
     {
         protected Toggle Toggle { get; private set; }
 
-        private void Awake()
+        protected void Awake()
         {
             Toggle = GetComponent<Toggle>();
         }
+
+        protected void OnEnable()
+        {
+            Toggle.onValueChanged.AddListener(OnValueChanged);
+        }
+
+        protected void OnDisable()
+        {
+            Toggle.onValueChanged.RemoveListener(OnValueChanged);
+        }
+
+        protected abstract void OnValueChanged(bool value);
     }
 }
