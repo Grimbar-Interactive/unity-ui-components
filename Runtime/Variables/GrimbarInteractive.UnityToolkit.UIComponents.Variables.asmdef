@@ -1,9 +1,8 @@
 {
-    "name": "GrimbarInteractive.UnityToolkit.Components.UI.State",
+    "name": "GrimbarInteractive.UnityToolkit.UIComponents.Variables",
     "rootNamespace": "",
     "references": [
         "GUID:7ff37b90c3ae8f24fa70736dbeca9064",
-        "GUID:5895df37389640a4b8b1a8353c1394ca",
         "GUID:0ff51d9640894c441a1d1e5988309ba4",
         "GUID:012f6a2d4192bc444bb8e5dde855b9bb",
         "GUID:6f06de8afc272b14699bec2824553081",
@@ -15,12 +14,7 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": [
-        "GI_STATE",
-        "GI_VARIABLES",
-        "GI_UTILITIES",
-        "GI_ATTRIBUTES"
-    ],
+    "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false
 }
