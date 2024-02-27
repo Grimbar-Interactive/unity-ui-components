@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ==
+## [1.2.2] - 2024-02-26
+### Fixed
+- Newer Unity Variables dependency.
+
+## [1.2.1] - 2024-02-26
+### Fixed
+- Fixing dependencies.
+
 ## [1.2.0] - 2024-02-26
 ### Modified
 - Converting from Unity-Components package to Unity-UIComponents
