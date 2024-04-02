@@ -8,7 +8,7 @@ namespace GI.UnityToolkit.Components.UI
 {
 #if !UNITY_2019
     [RequireComponent(typeof(Canvas))]
-    public abstract class MultiStateEnabledCanvasGeneric<TState> : MultiStateEnabledComponent<TState> where TState : StateBase
+    public abstract class StateEnabledCanvasGeneric<TState> : StateEnabledComponent<TState> where TState : StateBase
     {
         protected Canvas Canvas { get; private set; }
         

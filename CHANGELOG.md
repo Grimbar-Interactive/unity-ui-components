@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ==
+## [1.2.3] - 2024-04-02
+### Updated
+- Improving reusability and adding state-based canvas base classes.
+
 ## [1.2.2] - 2024-02-26
 ### Fixed
 - Newer Unity Variables dependency.

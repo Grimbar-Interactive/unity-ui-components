@@ -1,13 +1,18 @@
+using UnityEngine;
+
+#if UNITY_2019
+using System;
 using System.Collections;
+using GI.UnityToolkit.Utilities;
 using System.Collections.Generic;
 using GI.UnityToolkit.State;
-using GI.UnityToolkit.Utilities;
-using UnityEngine;
+using System.Linq;
 
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using GI.UnityToolkit.Attributes;
+#endif
 #endif
 
 namespace GI.UnityToolkit.Components.UI
@@ -16,9 +21,20 @@ namespace GI.UnityToolkit.Components.UI
     /// Enables and disables an attached Canvas based on the state.
     /// </summary>
     [AddComponentMenu("Grimbar Interactive/UI/State Enabled Canvas")]
+#if !UNITY_2019
+    public class StateEnabledCanvas : StateEnabledCanvasGeneric<State.State> {}
+#else
     public class StateEnabledCanvas : CanvasComponent, IStateListener<State.State>
     {
         [SerializeField] private StateManager stateManager;
+        
+        private enum StateComparison
+        {
+            AnyAreActive = 0,
+            NoneAreActive = 1
+        }
+
+        [SerializeField] private StateComparison enableWhen = StateComparison.AnyAreActive;
         
 #if ODIN_INSPECTOR
         private List<State.State> StateOptions => stateManager != null ? stateManager.States : new List<State.State>();
@@ -52,28 +68,39 @@ namespace GI.UnityToolkit.Components.UI
 
         private Coroutine _delayRoutine;
 
+        private new void Awake()
+        {
+            base.Awake();
+            stateManager.RegisterListener(this);
+        }
+        
         private void OnEnable()
         {
-            stateManager.RegisterListener(this);
             OnStateChanged(stateManager.PreviousState, stateManager.CurrentState);
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             stateManager.UnregisterListener(this);
         }
 
         public void OnStateChanged(State.State previousState, State.State newState)
         {
-            if (_delayRoutine != null)
+            var enabled = enableWhen switch
             {
-                StopCoroutine(_delayRoutine);
-                _delayRoutine = null;
-            }
+                StateComparison.AnyAreActive => activeStates.Any(s => s == newState),
+                StateComparison.NoneAreActive => activeStates.All(s => s != newState),
+                _ => throw new ArgumentOutOfRangeException()
+            };
             
             // Enable the Canvas if we've entered an active state.
-            if (activeStates.Contains(newState))
+            if (enabled)
             {
+                if (_delayRoutine != null)
+                {
+                    StopCoroutine(_delayRoutine);
+                    _delayRoutine = null;
+                }
                 Canvas.enabled = true;
                 return;
             }
@@ -81,15 +108,21 @@ namespace GI.UnityToolkit.Components.UI
             // If we're in an inactive state but the Canvas is already disabled, there's nothing else to do.
             if (!Canvas.enabled) return;
 
-            // If we're in an inactive state but there's no disable delay or we're not in a delayed inactive state,
+            // If we're in an inactive state but there's no disable delay, or we're not in a delayed inactive state,
             // just disable the Canvas immediately.
             if (delayDisable == false || delayDuration <= 0 || delayedStates.Contains(newState) == false)
             {
+                if (_delayRoutine != null)
+                {
+                    StopCoroutine(_delayRoutine);
+                    _delayRoutine = null;
+                }
                 Canvas.enabled = false;
                 return;
             }
 
-            _delayRoutine = StartCoroutine(WaitBeforeDisable(delayDuration));
+            _delayRoutine ??= StartCoroutine(WaitBeforeDisable(delayDuration));
+            return;
 
             IEnumerator WaitBeforeDisable(float duration)
             {
@@ -101,4 +134,5 @@ namespace GI.UnityToolkit.Components.UI
         
         private bool StateManagerIsSet => stateManager != null;
     }
+#endif
 }
